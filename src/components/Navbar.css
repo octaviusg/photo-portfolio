@@ -1,0 +1,16 @@
+:root {
+    --text-color:#080808;
+    --text-secondary:#989898;
+}
+
+
+.brand {
+    color: var(--text-color);
+    font-family: 'Jost', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.last {
+    color: var(--text-secondary);
+}
