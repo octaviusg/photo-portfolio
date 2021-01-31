@@ -1,58 +1,82 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import '../components/Navbar.css';
-
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar() {
-    const [click, setClick] =useState(false);
-    const [button, setButton] = useState(true);
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
 
-    const showButton = () => {
-        if(window.innerWidth <= 960) {
-            setButton{false}
-        }
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
     }
-    return (
-        <>
-         <nav className="navbar">
-             <div className="navbar-container">
-             
-             <div className="brand">OCTAVIO<span className="last">GARCIA</span></div>
-               
-                </div> {/* end of brand div */}
+  };
 
-                <div className='menu-icon' onClick={handleClick}>
-                    <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
-                    <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-items'>
-                        <Link to='/phographs' className='nav-links' onClick={closeMobileMenu}>
-                            photographs
-                        </Link>
-                    </li>
-                    <li className='nav-items'>
-                        <Link to='/journal' className='nav-links' onClick={closeMobileMenu}>
-                            journal
-                        </Link>
-                    </li>
-                    <li className='nav-items'>
-                        <Link to='/info' className='nav-links' onClick={closeMobileMenu}>
-                            info
-                        </Link>
-                    </li>
-                    <li className='nav-items'>
-                        <Link to='/contact' className='nav-links' onClick={closeMobileMenu}>
-                            contact
-                        </Link>
-                    </li>
-                    </ul>
-                    {button && <Button buttonStyle='btn-outline'> send </Button>}
-                </div> {/* end of navbar links */}
-  
-             </nav>  
-        </>
-    )
+
+  window.addEventListener('resize', showButton);
+
+  return (
+    <>
+      <nav className='navbar'>
+        <div className='navbar-container'>
+          <Link to='/' className='brand' onClick={closeMobileMenu}>
+          <div className="brand">OCTAVIO<span className="last">GARCIA</span></div>
+    
+          </Link>
+          <div className='menu-icon' onClick={handleClick}>
+            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+          </div>
+          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <li className='nav-item'>
+              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                photographs
+              </Link>
+            </li>
+            
+            <li className='nav-item'>
+              <Link
+                to='/journal'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                journal
+              </Link>
+            </li>
+
+            
+          
+            <li className='nav-item'>
+              <Link
+                to='/info'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                info
+              </Link>
+            </li>
+
+            <li className='nav-item'>
+              <Link
+                to='/contact'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                contact
+              </Link>
+            </li>
+
+           
+          </ul>
+          
+        </div>
+      </nav>
+    </>
+  );
 }
 
-export default Navbar
+export default Navbar;
