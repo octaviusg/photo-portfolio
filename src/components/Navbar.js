@@ -1,6 +1,11 @@
+import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ExternalLink } from 'react-external-link';
+
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './Navbar.css';
+
+
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -22,59 +27,50 @@ function Navbar() {
 
   return (
     <>
-      <nav className='navbar'>
+      <motion.nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='brand' onClick={closeMobileMenu}>
+          <NavLink to='/' className='brand' onClick={closeMobileMenu}>
           <div className="brand">OCTAVIO<span className="last">GARCIA</span></div>
     
-          </Link>
+          </NavLink>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+              <NavLink to='/' className='nav-links' onClick={closeMobileMenu} exact={true} activeClassName='is-active'>
                 photographs
-              </Link>
+              </NavLink>
             </li>
             
-            <li className='nav-item'>
-              <Link
-                to='/journal'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                journal
-              </Link>
-            </li>
-
             
           
             <li className='nav-item'>
-              <Link
-                to='/info'
+              <NavLink
+                to='/information'
                 className='nav-links'
                 onClick={closeMobileMenu}
-              >
-                info
-              </Link>
+                exact={true} activeClassName='is-active'
+                >
+                information
+              </NavLink>
             </li>
+
+       
 
             <li className='nav-item'>
-              <Link
-                to='/contact'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                contact
-              </Link>
+          
+                
+             <ExternalLink href= "https://prints.octaviogarcia.co/">
+             <span className='nav-links'>/ prints</span>
+            </ExternalLink>
+              
             </li>
 
-           
           </ul>
           
         </div>
-      </nav>
+      </motion.nav>
     </>
   );
 }
